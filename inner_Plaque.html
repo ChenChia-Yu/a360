@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <title>Panolens.js panorama image panorama</title>
+    <link rel="stylesheet" href="./css/main.css">
+  </head>
+
+  <body>
+    <!-- <img class="" src="./img/資產 59.png" alt=""> -->
+    <div id="god" class="txt_card">
+      <img id="" src="./img/pc/資產 38.png" alt="">
+      <div class="text">
+        <p class="title">
+          主祀：城隍尊神
+        </p>
+        <p>
+          城隍的信仰源於人們對於維護自身安全的城牆與護城河的崇敬與感謝，謝謝城牆保護其生命與財產的貢獻。城隍的主要職責是保佑百姓安全、健康、調理陰陽、剪惡除兇、護國安邦、普降甘澤、判定生死、賜人福壽
+        </p>  
+        <p  class="title">
+          陪祀：范謝將軍
+        </p>
+        <p>
+          位在城隍尊神的兩側，在台灣常被稱之為七爺八爺，是中國傳統文化中的一對神祇；此二尊神手執腳鐐手銬，專職緝拿鬼魂、協助賞善罰惡，也常為城隍爺等具有司法神職能之神祇的部將
+        </p>
+      </div>
+    </div>
+
+    <img id="flat_plan" class="flat_plan" src="./img/配置圖-03.png" alt="">
+
+    <div class="stair">
+      <div id="all_stair">
+        <img class="decoration" src="./img/decoration.png" alt="">
+        <h5>後殿</h5>
+        <h5 onClick="go('6')">六</h5>
+        <h5 onClick="go('5')">五</h5>
+        <h5 onClick="go('4')">四</h5>
+        <h5 onClick="go('3')">三</h5>
+        <h5 onClick="go('2')">二</h5>
+        <h5 onClick="go('1')">一</h5>
+      </div>
+      <img id="stair" onClick="show_stair()" src="./img/stair.png" alt="">
+      <img id="flat_icon" class="flat_icon" src="./img/flat_icon-02.png" onClick="show_flat()" alt="">
+    </div>
+    <!-- <div class="credit"><a href="https://github.com/pchen66/panolens.js">Panolens.js</a> image panorama example. Image from <a href="http://adaptivesamples.com/tag/equirectangular/">Adaptive Samples</a></div> -->
+
+    <script src="./js/three.min.js"></script>
+    <script src="./js/panolens.min.js"></script>
+    <script src="./js/stairs.js"></script>
+    <!-- <script src="./js/ImageLoader.js"></script> -->
+    <!-- <script src="./js/scene.js"></script> -->
+    <!-- <script src="./js/DeviceOrientationController.js"></script> -->
+
+    <script>
+
+
+
+      var panorama, viewer, container, infospot, infospot2,infospot3,infospot4, textureLoader, tex1, tex2;
+    //   panorama = new PANOLENS.ImagePanorama( './img/IMG_20211101_154226.JPG' );
+      panorama2 = new PANOLENS.ImagePanorama( './img/360/20211202_153418_67.jpg' );
+
+      // container = document.querySelector( '#container' );
+      textureLoader = new THREE.TextureLoader();
+      tex1 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61mtx+420hL._AC_US436_QL65_.jpg' );
+      tex2 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61-eBnYjM9L._AC_US436_QL65_.jpg' );
+
+
+      infospot = new PANOLENS.Infospot(
+          1300,
+          "./img/left_up.png"
+        );
+
+        infospot.position.set( -5000, -3000, -8000 );
+        infospot.addEventListener( "click", function(){
+          // this.focus();
+          window.location.href="calculation.html";
+        } );
+
+            // Custom infospot
+
+
+          infospot6 = new PANOLENS.Infospot(
+              600,
+              "./img/right_up.png"
+            );
+          infospot6.position.set( -2000, -2000, -5000);
+          // infospot6.addHoverText( "Default Infospot", 100 );
+          infospot6.addEventListener( "click", function(){
+            window.location.href="outer.html";
+          } );
+
+          infospot7 = new PANOLENS.Infospot(
+              800,
+              "./img/info.png"
+            );
+          infospot7.addHoverElement(document.getElementById('god'),150)
+        infospot7.position.set( -5000, 1000, 0 );
+
+
+        panorama2.add( infospot,infospot6,infospot7);
+
+        viewer = new PANOLENS.Viewer( { output:'console'  } );
+        viewer.add(panorama2 );
+        viewer.getCamera().fov = 1200;
+        viewer.getCamera().updateProjectionMatrix();
+        viewer.tweenControlCenter(new THREE.Vector3(-3000, -5500, 1830 ),0)
+
+        if(window.screen.width < 410){
+          viewer.disableControl();
+          viewer.enableControl(1);
+        }
+
+    </script>
+
+
+
+  </body>
+</html>

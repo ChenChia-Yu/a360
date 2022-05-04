@@ -1,0 +1,155 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <title>Panolens.js panorama image panorama</title>
+    <link rel="stylesheet" href="./css/main.css">
+  </head>
+
+  <body>
+    
+    <div id="god3" class="txt_card">
+      <img id="" src="./img/pc/資產 46.png" alt="">
+      <div class="text">
+        <p class="title">
+          城隍夫人
+        </p>
+        <p>
+          城隍夫人是城隍爺的配偶，也就是民間所稱的配偶神；她有生之年為人間家庭主婦，賢淑慈祥，懿德典範，女性中的楷模。今專門掌理人間事，夫妻失和，家庭雜務等等疑難雜症
+        </p>
+      </div>
+    </div>
+    <div id="god2" class="txt_card">
+      <img src="./img/pc/資產 41.png" alt="">
+      <div class="text">
+        <p class="title">
+          註生娘娘
+        </p>
+        <p>
+          在台灣也被稱為「送子娘娘」、「臨水夫人」，是漢文化信仰中主管懷孕和生育的女神，是許多不孕婦女或懷孕婦女的信仰寄託
+        </p>
+      </div>
+    </div>
+    <div id="god1" class="txt_card">
+      <img id="" src="./img/pc/資產 45.png" alt="">
+      <div class="text">
+        <p class="title">
+          城隍夫人
+        </p>
+        <p>
+          城隍夫人是城隍爺的配偶，也就是民間所稱的配偶神；她有生之年為人間家庭主婦，賢淑慈祥，懿德典範，女性中的楷模。今專門掌理人間事，夫妻失和，家庭雜務等等疑難雜症
+        </p>
+      </div>
+    </div>
+
+    <img id="flat_plan" class="flat_plan" src="./img/配置圖-03.png" alt="">
+
+    <div class="stair">
+      <div id="all_stair">
+        <img class="decoration" src="./img/decoration.png" alt="">
+        <h5>後殿</h5>
+        <h5 onClick="go('6')">六</h5>
+        <h5 onClick="go('5')">五</h5>
+        <h5 onClick="go('4')">四</h5>
+        <h5 onClick="go('3')">三</h5>
+        <h5 onClick="go('2')">二</h5>
+        <h5 onClick="go('1')">一</h5>
+      </div>
+      <img id="stair" onClick="show_stair()" src="./img/stair.png" alt="">
+      <img id="flat_icon" class="flat_icon" src="./img/flat_icon-02.png" onClick="show_flat()" alt="">
+    </div>
+    <!-- <div class="credit"><a href="https://github.com/pchen66/panolens.js">Panolens.js</a> image panorama example. Image from <a href="http://adaptivesamples.com/tag/equirectangular/">Adaptive Samples</a></div> -->
+
+    <script src="./js/three.min.js"></script>
+    <script src="./js/panolens.min.js"></script>
+    <script src="./js/stairs.js"></script>
+
+    <!-- <script src="./js/ImageLoader.js"></script> -->
+    <!-- <script src="./js/scene.js"></script> -->
+    <!-- <script src="./js/DeviceOrientationController.js"></script> -->
+
+    <script>
+
+
+
+      var panorama, viewer, container, infospot, infospot2,infospot3,infospot4,infospot6, textureLoader, tex1, tex2;
+    //   panorama = new PANOLENS.ImagePanorama( './img/IMG_20211101_154226.JPG' );
+      panorama2 = new PANOLENS.ImagePanorama( './img/360/20211202_154119_904.jpg' );
+
+      // container = document.querySelector( '#container' );
+      textureLoader = new THREE.TextureLoader();
+      tex1 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61mtx+420hL._AC_US436_QL65_.jpg' );
+      tex2 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61-eBnYjM9L._AC_US436_QL65_.jpg' );
+
+
+
+
+      infospot2 = new PANOLENS.Infospot(
+          600,
+          "./img/info.png"
+        );
+
+        infospot2.position.set( 2000, 200, 0 );
+        infospot2.addHoverElement(document.getElementById( 'god2' ), 150)
+
+        // Custom infospot
+        infospot3 = new PANOLENS.Infospot(
+          600,
+          "./img/info.png"
+        );
+
+        infospot3.position.set( 2000, 200,1000 );
+        infospot3.addHoverElement( document.getElementById( 'god3' ), 150 );
+
+
+        infospot4 = new PANOLENS.Infospot(
+          600,
+          "./img/info.png"
+        );
+
+        infospot4.position.set( 2000, 200,-1500 );
+
+        infospot4.addHoverElement( document.getElementById( 'god1' ), 150 );
+
+        infospot5 = new PANOLENS.Infospot(
+          600,
+          "./img/right_up.png"
+        );
+        infospot5.position.set( 3000, -1000,6000 );
+        // infospot4.addHoverText( "Default Infospot", 100 );
+        infospot5.addEventListener( "click", function(){
+          // this.focus();
+          window.location.href="back2.html";
+        } );
+
+        infospot6 = new PANOLENS.Infospot(
+          600,
+          "./img/left_up.png"
+        );
+        infospot6.position.set( 1000, -1000,-4000 );
+        // infospot4.addHoverText( "Default Infospot", 100 );
+        infospot6.addEventListener( "click", function(){
+          // this.focus();
+          window.location.href="calculation.html";
+        } );
+
+
+
+        panorama2.add(infospot2,infospot3,infospot4,infospot5,infospot6);
+
+        viewer = new PANOLENS.Viewer( { output:'console'  } );
+        viewer.add(panorama2 );
+        viewer.getCamera().fov = 1200;
+        viewer.getCamera().updateProjectionMatrix();
+        viewer.tweenControlCenter(new THREE.Vector3(5000, -5500, 1830 ),0)
+        if(window.screen.width < 410){
+          viewer.enableControl(1);
+        }
+        
+
+
+
+    </script>
+
+  </body>
+</html>

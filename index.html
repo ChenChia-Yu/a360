@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <title>Panolens.js panorama image panorama</title>
+    <link rel="stylesheet" href="./css/main.css">
+  </head>
+
+  <body>
+
+    <!-- <div class="credit"><a href="https://github.com/pchen66/panolens.js">Panolens.js</a> image panorama example. Image from <a href="http://adaptivesamples.com/tag/equirectangular/">Adaptive Samples</a></div> -->
+    <img id="flat_plan" class="flat_plan" src="./img/配置圖-03.png" alt="">
+
+    <div class="stair">
+      <div id="all_stair">
+        <h5 onClick="go('1')">一</h5>
+        <h5 onClick="go('2')">二</h5>
+        <h5 onClick="go('3')">三</h5>
+        <h5 onClick="go('4')">四</h5>
+        <h5 onClick="go('5')">五</h5>
+        <h5 onClick="go('6')">六</h5>
+      </div>
+      <img id="stair" onClick="show_stair()" src="./img/stair.png" alt="">
+      <img id="flat_icon" class="flat_icon" src="./img/flat_icon-02.png" onClick="show_flat()" alt="">
+    </div>
+    <script src="./js/three.min.js"></script>
+    <script src="./js/panolens.min.js"></script>
+    <script src="./js/stairs.js"></script>
+
+    <!-- <script type="module" src="./js/VR_button.js"></script> -->
+    <!-- <script src="./js/scene.js"></script> -->
+    <!-- <script src="./js/DeviceOrientationController.js"></script> -->
+
+    <script type="module">
+
+      var panorama, viewer, container, infospot, infospot2,infospot3,infospot4, textureLoader, tex1, tex2;
+      panorama = new PANOLENS.ImagePanorama( './img/360/20211202_153843_268.jpg' );
+      // panorama2 = new PANOLENS.ImagePanorama( './img/IMG_20211101_154503.JPG' );
+
+
+
+
+      // container = document.querySelector( '#container' );
+      textureLoader = new THREE.TextureLoader();
+      tex1 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61mtx+420hL._AC_US436_QL65_.jpg' );
+      tex2 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61-eBnYjM9L._AC_US436_QL65_.jpg' );
+
+      // const geometry = new THREE.BoxGeometry();
+			// const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			// const cube = new THREE.Mesh( geometry, material );
+
+        infospot = new PANOLENS.Infospot(
+          200,
+          "./img/up.png"
+        );
+
+        infospot.position.set(  500, 0, -200 );
+        // infospot.addHoverText( "Default Infospot", 100 );
+        infospot.addEventListener( "click", function(){
+        //   this.focus();
+        // viewer.remove(panorama);
+          window.location.href = "courtyard.html";
+        });
+        // infospot.rotateX(180);
+        infospot.rotation.set(90, 0, 90);
+        panorama.add( infospot);
+
+        viewer = new PANOLENS.Viewer( { output:'console'  } );
+        viewer.add( panorama );
+        console.log(infospot.rotation.y);
+
+        viewer.getCamera().fov = 1200;
+        viewer.getCamera().updateProjectionMatrix();
+        // viewer.disableControl();
+        if(window.screen.width < 410){
+          viewer.enableControl(1);
+          
+        }
+
+        
+
+
+
+    </script>
+  </body>
+</html>

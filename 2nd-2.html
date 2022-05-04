@@ -1,0 +1,124 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <title>Panolens.js panorama image panorama</title>
+    <link rel="stylesheet" href="./css/main.css">
+  </head>
+
+  <body>
+
+    <!-- <div class="credit"><a href="https://github.com/pchen66/panolens.js">Panolens.js</a> image panorama example. Image from <a href="http://adaptivesamples.com/tag/equirectangular/">Adaptive Samples</a></div> -->
+    <div class="stair">
+      <div id="all_stair">
+        <img class="decoration" src="./img/decoration.png" alt="">
+        <h5>後殿</h5>
+        <h5 onClick="go('6')">六</h5>
+        <h5 onClick="go('5')">五</h5>
+        <h5 onClick="go('4')">四</h5>
+        <h5 onClick="go('3')">三</h5>
+        <h5 onClick="go('2')">二</h5>
+        <h5 onClick="go('1')">一</h5>
+      </div>
+      <img id="stair" onClick="show_stair()" src="./img/stair.png" alt="">
+    </div>
+
+    <div id="god" class="txt_card">
+      <img id="" src="./img/pc/資產 39.png" alt="">
+      <div class="text">
+        <div class="title">主祀：觀音佛祖、彌勒佛       左右兩側：十八羅漢</div>
+        <p>
+          觀音佛祖又譯為「觀世音菩薩」，從字面解釋就是「觀察世間聲音」的菩薩，出自《妙法蓮華經》之《觀世音菩薩普門品》：「若有無量百千萬億眾生，受諸苦惱，聞是觀世音菩薩，一心稱名，觀世音菩薩即時觀其音聲，皆得解脫。」，與文殊、普賢、地藏並稱四大菩薩
+        </p>
+        <p>
+          彌勒佛為八大菩薩之一，彌勒意思是「慈氏」，是釋迦牟尼佛的接班人，因為總是袒露大肚又笑口常開，在民間也被稱為笑面佛
+        </p>
+      </div>
+    </div>
+
+
+    <script src="./js/three.min.js"></script>
+    <script src="./js/panolens.min.js"></script>
+    <script src="./js/stairs.js"></script>
+    <!-- <script src="./js/ImageLoader.js"></script> -->
+    <!-- <script src="./js/scene.js"></script> -->
+    <!-- <script src="./js/DeviceOrientationController.js"></script> -->
+
+    <script>
+
+
+
+      var panorama, viewer, container, infospot, infospot2,infospot3,infospot4, textureLoader, tex1, tex2;
+    //   panorama = new PANOLENS.ImagePanorama( './img/IMG_20211101_154226.JPG' );
+      panorama2 = new PANOLENS.ImagePanorama( './img/360/20211202_154706_454.jpg' );
+
+      // container = document.querySelector( '#container' );
+      textureLoader = new THREE.TextureLoader();
+      tex1 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61mtx+420hL._AC_US436_QL65_.jpg' );
+      tex2 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61-eBnYjM9L._AC_US436_QL65_.jpg' );
+
+
+
+
+      infospot2 = new PANOLENS.Infospot(
+          600,
+          "./img/info.png"
+        );
+
+        infospot2.position.set( 2000, 0, -200 );
+        infospot2.addHoverElement(document.getElementById( 'god' ), 150)
+
+        infospot4 = new PANOLENS.Infospot(
+          600,
+          "./img/right_up.png"
+        );
+        infospot4.position.set( 2000, -3000, 3500 );
+        // infospot4.addHoverText( "Default Infospot", 100 );
+        infospot4.addEventListener( "click", function(){
+          // this.focus();
+          window.location.href="2nd-1.html";
+        } );
+
+        // Custom infospot
+        //
+
+
+        panorama2.add(infospot2,infospot3,infospot4);
+
+        viewer = new PANOLENS.Viewer( { output:'console'  } );
+        viewer.add(panorama2 );
+        viewer.getCamera().fov = 1200;
+        viewer.getCamera().updateProjectionMatrix();
+        if(window.screen.width < 410){
+          viewer.enableControl(1);
+        }
+        // viewer.control = view.controls[1];
+        // viewer.control.enabled = !0;
+        // console.log("control" + view.controls[1]);
+      // infospot2.material.rotation = 30 * Math.PI / 180;
+      // infospot2.position.set( -4000, 100, -2000 );
+      // infospot2.addHoverText( "Custom Infospot2", 80 );
+      // infospot2.addEventListener( "click", function(){
+      //   this.focus();
+      // } );
+      // infospot2.addEventListener( 'hoverenter', function( event ){
+      //   this.material.opacity = 0.6;
+      //   this.material.color.set( 0x00ff00 * Math.random() );
+      //   this.material.map = tex2;
+      //   this.scale.x *= 2;
+      //   this.scale.y *= 2;
+      // } );
+      // infospot2.addEventListener( 'hoverleave', function( event ){
+      //   this.material.opacity = 1;
+      //   this.material.color.set( 0xffffff );
+      //   this.material.map = tex1;
+      //   this.scale.x /= 2;
+      //   this.scale.y /= 2;
+      // } );
+
+
+
+    </script>
+
+  </body>
+</html>

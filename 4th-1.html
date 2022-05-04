@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <title>Panolens.js panorama image panorama</title>
+    <link rel="stylesheet" href="./css/main.css">
+  </head>
+
+  <body>
+
+    <!-- <div class="credit"><a href="https://github.com/pchen66/panolens.js">Panolens.js</a> image panorama example. Image from <a href="http://adaptivesamples.com/tag/equirectangular/">Adaptive Samples</a></div> -->
+    <div class="stair">
+      <div id="all_stair">
+        <img class="decoration" src="./img/decoration.png" alt="">
+        <h5>後殿</h5>
+        <h5 onClick="go('6')">六</h5>
+        <h5 onClick="go('5')">五</h5>
+        <h5 onClick="go('4')">四</h5>
+        <h5 onClick="go('3')">三</h5>
+        <h5 onClick="go('2')">二</h5>
+        <h5 onClick="go('1')">一</h5>
+      </div>
+      <img id="stair" onClick="show_stair()" src="./img/stair.png" alt="">
+    </div>
+    <div id="god" class="txt_card">
+      <img id="" src="./img/pc/資產 34.png" alt="">
+      <div class="text">
+        <div class="title">主祀：太歲星君</div>
+        <p>
+          太歲星君，為人類一本命歲神，主掌人間的吉凶禍福，十天干與十二地支衍生出六十甲子，其都各有歲神輪值，當值之歲神，即稱 「值年太歲 」
+        </p>
+      </div>
+    </div>
+    <script src="./js/three.min.js"></script>
+    <script src="./js/panolens.min.js"></script>
+    <script src="./js/stairs.js"></script>
+    <!-- <script src="./js/ImageLoader.js"></script> -->
+    <!-- <script src="./js/scene.js"></script> -->
+    <!-- <script src="./js/DeviceOrientationController.js"></script> -->
+
+    <script>
+
+
+
+      var panorama, viewer, container, infospot, infospot2,infospot3,infospot4, textureLoader, tex1, tex2;
+    //   panorama = new PANOLENS.ImagePanorama( './img/IMG_20211101_154226.JPG' );
+      panorama2 = new PANOLENS.ImagePanorama( './img/360/20211202_154456_270.jpg' );
+
+      // container = document.querySelector( '#container' );
+      textureLoader = new THREE.TextureLoader();
+      tex1 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61mtx+420hL._AC_US436_QL65_.jpg' );
+      tex2 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61-eBnYjM9L._AC_US436_QL65_.jpg' );
+
+
+
+
+      infospot2 = new PANOLENS.Infospot(
+          600,
+          "./img/info.png"
+        );
+
+        infospot2.position.set( 2000, 500, -200 );
+        infospot2.addHoverElement(document.getElementById('god'),150);
+
+        infospot3 = new PANOLENS.Infospot(
+          600,
+          "./img/up.png"
+        );
+
+        infospot3.position.set( -2000, -2000, -200 );
+        // infospot3.addHoverText( "Default Infospot", 100 );
+        infospot3.addEventListener( "click", function(){
+          // this.focus();
+          window.location.href="4th-2.html";
+        } );
+
+        infospot4 = new PANOLENS.Infospot(
+          600,
+          "./img/5_up.png"
+        );
+
+        infospot4.position.set( 0, 500, 2200 );
+        infospot4.addEventListener("click",function(){
+          window.location.href="5th-1.html"
+        })
+
+        infospot5 = new PANOLENS.Infospot(
+          600,
+          "./img/3_down.png"
+        );
+
+        infospot5.position.set( 500, 0, 2200 );
+        infospot5.addEventListener("click",function(){
+          window.location.href="3rd-2.html"
+        })
+
+        panorama2.add(infospot2,infospot3,infospot4,infospot5);
+
+        viewer = new PANOLENS.Viewer( { output:'console'  } );
+        viewer.add(panorama2 );
+        viewer.getCamera().fov = 1200;
+        viewer.getCamera().updateProjectionMatrix();
+        if(window.screen.width < 410){
+          viewer.enableControl(1);
+        }
+
+    </script>
+
+  </body>
+</html>

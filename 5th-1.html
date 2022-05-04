@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <title>Panolens.js panorama image panorama</title>
+    <link rel="stylesheet" href="./css/main.css">
+  </head>
+
+  <body>
+
+    <!-- <div class="credit"><a href="https://github.com/pchen66/panolens.js">Panolens.js</a> image panorama example. Image from <a href="http://adaptivesamples.com/tag/equirectangular/">Adaptive Samples</a></div> -->
+    <div class="stair">
+      <div id="all_stair">
+        <img class="decoration" src="./img/decoration.png" alt="">
+        <h5>後殿</h5>
+        <h5 onClick="go('6')">六</h5>
+        <h5 onClick="go('5')">五</h5>
+        <h5 onClick="go('4')">四</h5>
+        <h5 onClick="go('3')">三</h5>
+        <h5 onClick="go('2')">二</h5>
+        <h5 onClick="go('1')">一</h5>
+      </div>
+      <img id="stair" onClick="show_stair()" src="./img/stair.png" alt="">
+    </div>
+    <script src="./js/three.min.js"></script>
+    <script src="./js/panolens.min.js"></script>
+    <script src="./js/stairs.js"></script>
+    <!-- <script src="./js/ImageLoader.js"></script> -->
+    <!-- <script src="./js/scene.js"></script> -->
+    <!-- <script src="./js/DeviceOrientationController.js"></script> -->
+
+    <script>
+
+
+
+      var panorama, viewer, container, infospot, infospot2,infospot3,infospot4, textureLoader, tex1, tex2;
+    //   panorama = new PANOLENS.ImagePanorama( './img/IMG_20211101_154226.JPG' );
+      panorama2 = new PANOLENS.ImagePanorama( './img/360/20211202_154356_963.jpg' );
+
+      // container = document.querySelector( '#container' );
+      textureLoader = new THREE.TextureLoader();
+      tex1 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61mtx+420hL._AC_US436_QL65_.jpg' );
+      tex2 = textureLoader.load( 'https://images-na.ssl-images-amazon.com/images/I/61-eBnYjM9L._AC_US436_QL65_.jpg' );
+
+
+
+
+        infospot2 = new PANOLENS.Infospot(
+            600,
+            "./img/up.png"
+          );
+
+        infospot2.position.set( 2000, -2000, -200 );
+        infospot2.addEventListener("click",function(){
+          window.location.href="5th-2.html";
+        });
+
+        infospot3 = new PANOLENS.Infospot(
+            600,
+            "./img/4_down.png"
+          );
+
+        infospot3.position.set( -200, 500, -2000 );
+        infospot3.addEventListener("click",function(){
+          window.location.href="4th-1.html";
+        });
+
+        infospot4 = new PANOLENS.Infospot(
+            600,
+            "./img/6_up.png"
+          );
+
+        infospot4.position.set( -2000, 500, -1000 );
+        infospot4.addEventListener("click",function(){
+          window.location.href="6th-1.html";
+        });
+
+        // Custom infospot
+        //
+
+
+        panorama2.add(infospot2,infospot3,infospot4);
+
+        viewer = new PANOLENS.Viewer( { output:'console'  } );
+        viewer.add(panorama2 );
+        viewer.getCamera().fov = 1200;
+        viewer.getCamera().updateProjectionMatrix();
+        if(window.screen.width < 410){
+          viewer.enableControl(1);
+        }
+        // viewer.control = view.controls[1];
+        // viewer.control.enabled = !0;
+        // console.log("control" + view.controls[1]);
+      // infospot2.material.rotation = 30 * Math.PI / 180;
+      // infospot2.position.set( -4000, 100, -2000 );
+      // infospot2.addHoverText( "Custom Infospot2", 80 );
+      // infospot2.addEventListener( "click", function(){
+      //   this.focus();
+      // } );
+      // infospot2.addEventListener( 'hoverenter', function( event ){
+      //   this.material.opacity = 0.6;
+      //   this.material.color.set( 0x00ff00 * Math.random() );
+      //   this.material.map = tex2;
+      //   this.scale.x *= 2;
+      //   this.scale.y *= 2;
+      // } );
+      // infospot2.addEventListener( 'hoverleave', function( event ){
+      //   this.material.opacity = 1;
+      //   this.material.color.set( 0xffffff );
+      //   this.material.map = tex1;
+      //   this.scale.x /= 2;
+      //   this.scale.y /= 2;
+      // } );
+
+
+
+    </script>
+
+  </body>
+</html>
